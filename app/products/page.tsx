@@ -24,7 +24,7 @@ const Products = async ({ searchParams }: { searchParams: SearchParams }) => {
     <div className='flex flex-col gap-4 px-6 py-4'>
       <div className='max-w-7xl w-full mx-auto mt-2'>
         <Link
-          href='/tickets/new'
+          href='/products/new'
           className={buttonVariants({ variant: 'default' })}
         >
           New Product

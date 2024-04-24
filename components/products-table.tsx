@@ -24,7 +24,7 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
               <TableHead className='text-center'>Stock</TableHead>
               <TableHead className='text-center'>Wastage</TableHead>
               <TableHead className='text-center'>Alert</TableHead>
-              <TableHead className='text-center'>Create At</TableHead>
+              <TableHead className='text-center'>Added At</TableHead>
               <TableHead className='text-center'>Delete</TableHead>
               <TableHead className='text-center'>Edit</TableHead>
             </TableRow>

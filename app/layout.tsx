@@ -4,6 +4,7 @@ import './globals.css';
 import { ThemeProvider } from '@/components/theme-provider';
 import SideBar from '@/components/side-bar';
 import MainNav from '@/components/main-nav';
+import { Toaster } from '@/components/ui/toaster';
 
 const roboto_mono = Roboto_Mono({ subsets: ['latin'] });
 
@@ -35,6 +36,8 @@ export default function RootLayout({
               {children}
             </main>
           </div>
+
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
