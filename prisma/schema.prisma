@@ -19,7 +19,7 @@ model Product {
   name             String            @unique @db.VarChar(255)
   price            Decimal           @db.Decimal(10, 2)
   stock_quantity   Int               @db.Int
-  wastage_quantity Int               @db.Int
+  wastage_quantity Int               @default(0) @db.Int
   alert_threshold  Int               @default(10) @db.Int
   created_at       DateTime          @default(now())
   updated_at       DateTime          @updatedAt

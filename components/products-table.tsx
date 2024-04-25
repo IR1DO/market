@@ -10,6 +10,7 @@ import {
 import Link from 'next/link';
 import { Product } from '@prisma/client';
 import { ShieldAlert, ShieldCheck } from 'lucide-react';
+import DeleteBtn from './delete-btn';
 
 const ProductsTable = ({ products }: { products: Product[] }) => {
   return (
@@ -36,7 +37,7 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
                 <TableRow key={product.id} data-href='/'>
                   <TableCell className='text-left'>
                     <Link
-                      href={`/products/${product.id}`}
+                      href={`/products/edit/${product.id}`}
                       className='hover:underline hover:text-cyan-500'
                     >
                       {product.id}
@@ -45,7 +46,7 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
 
                   <TableCell className='text-left'>
                     <Link
-                      href={`/products/${product.id}`}
+                      href={`/products/edit/${product.id}`}
                       className='hover:underline hover:text-cyan-500'
                     >
                       {product.name}
@@ -93,13 +94,7 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
                   </TableCell>
 
                   <TableCell>
-                    <Link
-                      href={`/products/edit/${product.id}`}
-                      className='text-red-500 hover:underline'
-                    >
-                      {/* TODO */}
-                      Delete
-                    </Link>
+                    <DeleteBtn productId={product.id} />
                   </TableCell>
 
                   <TableCell>

@@ -29,6 +29,7 @@ interface Props {
 const ProductForm = ({ product }: Props) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const router = useRouter();
   const { toast } = useToast();
 
@@ -47,6 +48,10 @@ const ProductForm = ({ product }: Props) => {
         await axios.post('/api/products', values);
       }
 
+      setSuccessMessage(
+        'The product information has been updated successfully.'
+      );
+      // TODO: route to the previous page with page params
       router.push('/products');
       router.refresh();
       setIsSubmitting(false);
@@ -56,7 +61,6 @@ const ProductForm = ({ product }: Props) => {
         err.response?.data?.message ||
         err.response?.data?.error ||
         err.response.statusText;
-      console.log(err);
       setError(`${error}. Error message: ${errorMessage}`);
       setIsSubmitting(false);
     }
@@ -68,8 +72,12 @@ const ProductForm = ({ product }: Props) => {
         variant: 'destructive',
         description: error,
       });
+    } else if (successMessage) {
+      toast({
+        description: successMessage,
+      });
     }
-  }, [error, toast]);
+  }, [error, successMessage, toast]);
 
   return (
     <div className='rounded-md border w-full p-4 max-w-7xl mx-auto'>
