@@ -9,7 +9,7 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-import DeleteLocalBtn from './delete-local-btn';
+import { Button } from './ui/button';
 
 type Product = {
   id: number;
@@ -21,7 +21,7 @@ type Product = {
 
 interface Props {
   products?: Product[];
-  onDelete: (productId: number) => void;
+  onDelete?: (productId: number) => void;
 }
 
 const SaleDetailTable = ({ products, onDelete }: Props) => {
@@ -66,12 +66,17 @@ const SaleDetailTable = ({ products, onDelete }: Props) => {
                       ).toLocaleString('en-us')}`}</div>
                     </TableCell>
 
-                    <TableCell>
-                      <DeleteLocalBtn
-                        productId={product.id}
-                        onDelete={onDelete}
-                      />
-                    </TableCell>
+                    {onDelete ? (
+                      <TableCell>
+                        <Button
+                          variant='link'
+                          className='text-red-500 hover:underline'
+                          onClick={() => onDelete(product.id)}
+                        >
+                          Delete
+                        </Button>
+                      </TableCell>
+                    ) : null}
                   </TableRow>
                 ))
               : null}
