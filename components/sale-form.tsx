@@ -37,9 +37,7 @@ const SaleForm = () => {
     resolver: zodResolver(saleSchema),
   });
 
-  // DEBUG
-  console.log(products);
-
+  // onSubmit handle the action of adding an item
   async function onSubmit(values: z.infer<typeof saleSchema>) {
     try {
       setError('');
@@ -86,6 +84,7 @@ const SaleForm = () => {
     }
   }
 
+  // handleDelete handle the action of deleteing an item from the sale
   function handleDelete(productId: number) {
     try {
       setError('');
@@ -103,6 +102,34 @@ const SaleForm = () => {
         err.response?.data?.error ||
         err.response.statusText;
       setError(`${error}. Error message: ${errorMessage}`);
+    }
+  }
+
+  // handleSubmit handle the action of submitting the data of products
+  async function handleSubmit() {
+    // TODO
+    // DEBUG
+
+    try {
+      setError('');
+      setSuccessMessage('');
+      setIsSubmitting(true);
+
+      await axios.post('/api/sales', products);
+
+      setSuccessMessage('Added sale successfully.');
+      // TODO router to sales page
+      router.push('/sales');
+      router.refresh();
+      setIsSubmitting(false);
+    } catch (error) {
+      const err = error as any;
+      const errorMessage =
+        err.response?.data?.message ||
+        err.response?.data?.error ||
+        err.response.statusText;
+      setError(`${error}. Error message: ${errorMessage}`);
+      setIsSubmitting(false);
     }
   }
 
@@ -214,6 +241,24 @@ const SaleForm = () => {
       </div>
 
       <SaleDetailTable products={products} onDelete={handleDelete} />
+
+      <div className='max-w-7xl w-full mx-auto mt-2'>
+        {`Total Amount: ¥${products
+          .reduce((total, product) => total + product.total_price, 0)
+          .toLocaleString('en-US')}`}
+      </div>
+
+      <div className='max-w-7xl w-full mx-auto mt-2'>
+        <div className='flex gap-4'>
+          <Button
+            onClick={handleSubmit}
+            disabled={products.length === 0 || isSubmitting}
+          >
+            Add
+          </Button>
+          <Button onClick={() => router.push('/sales')}>Cancel</Button>
+        </div>
+      </div>
     </>
   );
 };

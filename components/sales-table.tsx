@@ -19,7 +19,7 @@ const SalesTable = ({ sales }: { sales: Sale[] }) => {
           <TableHeader>
             <TableRow className='bg-secondary hover:bg-secondary'>
               <TableHead className='text-left'>ID</TableHead>
-              <TableHead className='text-left'>Total Amount</TableHead>
+              <TableHead className='text-center'>Total Amount</TableHead>
               <TableHead className='text-center'>Date</TableHead>
               <TableHead className='text-center'>Delete</TableHead>
               <TableHead className='text-center'>Edit</TableHead>
@@ -40,7 +40,9 @@ const SalesTable = ({ sales }: { sales: Sale[] }) => {
                   </TableCell>
 
                   <TableCell>
-                    <div className='font-semibold text-orange-600'>{`¥${sale.sale_amount.toString()}`}</div>
+                    <div className='font-semibold text-orange-600'>{`¥${parseFloat(
+                      sale.sale_amount.toString()
+                    ).toLocaleString('en-us')}`}</div>
                   </TableCell>
 
                   <TableCell>

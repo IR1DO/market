@@ -55,11 +55,15 @@ const SaleDetailTable = ({ products, onDelete }: Props) => {
                     </TableCell>
 
                     <TableCell>
-                      <div className='font-semibold text-orange-600'>{`¥${product.unit_price.toString()}`}</div>
+                      <div className='font-semibold text-orange-600'>{`¥${parseFloat(
+                        product.unit_price.toString()
+                      ).toLocaleString('en-us')}`}</div>
                     </TableCell>
 
                     <TableCell>
-                      <div className='font-semibold text-orange-600'>{`¥${product.total_price.toString()}`}</div>
+                      <div className='font-semibold text-orange-600'>{`¥${parseFloat(
+                        product.total_price.toString()
+                      ).toLocaleString('en-us')}`}</div>
                     </TableCell>
 
                     <TableCell>

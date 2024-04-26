@@ -54,7 +54,9 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
                     </TableCell>
 
                     <TableCell>
-                      <div className='font-semibold text-orange-600'>{`¥${product.price.toString()}`}</div>
+                      <div className='font-semibold text-orange-600'>{`¥${parseFloat(
+                        product.price.toString()
+                      ).toLocaleString('en-us')}`}</div>
                     </TableCell>
 
                     <TableCell>

@@ -34,12 +34,13 @@ model Sale {
 }
 
 model ProductsOfSales {
-  sale       Sale     @relation(fields: [sale_id], references: [id])
-  sale_id    Int      @db.Int
-  product    Product  @relation(fields: [product_id], references: [id])
-  product_id Int      @db.Int
-  created_at DateTime @default(now())
-  updated_at DateTime @updatedAt
+  sale          Sale     @relation(fields: [sale_id], references: [id])
+  sale_id       Int      @db.Int
+  product       Product  @relation(fields: [product_id], references: [id])
+  product_id    Int      @db.Int
+  sale_quantity Int      @db.Int
+  created_at    DateTime @default(now())
+  updated_at    DateTime @updatedAt
 
   @@id([sale_id, product_id])
   @@map("products_of_sales")
