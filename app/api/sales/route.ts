@@ -35,6 +35,16 @@ export async function POST(request: NextRequest) {
         sale_quantity: product.quantity,
       },
     });
+
+    // restore product quantity
+    await prisma.product.update({
+      where: { id: product.id },
+      data: {
+        stock_quantity: {
+          decrement: product.quantity,
+        },
+      },
+    });
   }
 
   return NextResponse.json(newSale, { status: 201 });

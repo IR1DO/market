@@ -27,6 +27,20 @@ export async function DELETE(request: NextRequest, { params }: Props) {
           },
         },
       });
+
+      // restore product quantity
+      const product = await prisma.product.findUnique({
+        where: { id: productOfSale.product_id },
+      });
+
+      if (product) {
+        const updatedStockQuantity =
+          product.stock_quantity + productOfSale.sale_quantity;
+        await prisma.product.update({
+          where: { id: productOfSale.product_id },
+          data: { stock_quantity: updatedStockQuantity },
+        });
+      }
     })
   );
 

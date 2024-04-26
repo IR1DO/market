@@ -29,6 +29,8 @@ const SaleForm = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [productId, setProductId] = useState('');
   const [productName, setProductName] = useState('');
+  const [productQuantity, setProductQuantity] = useState('');
+  const [isQtyGTStock, setIsQtyGTStock] = useState(false);
   const [products, setProducts] = useState<Product[]>([]);
   const router = useRouter();
   const { toast } = useToast();
@@ -107,9 +109,6 @@ const SaleForm = () => {
 
   // handleSubmit handle the action of submitting the data of products
   async function handleSubmit() {
-    // TODO
-    // DEBUG
-
     try {
       setError('');
       setSuccessMessage('');
@@ -118,7 +117,6 @@ const SaleForm = () => {
       await axios.post('/api/sales', products);
 
       setSuccessMessage('Added sale successfully.');
-      // TODO router to sales page
       router.push('/sales');
       router.refresh();
       setIsSubmitting(false);
@@ -152,6 +150,12 @@ const SaleForm = () => {
         const data = await axios.get(`/api/products/${productId}`);
         const product = data.data.product;
         setProductName(product.name);
+
+        if (productQuantity) {
+          setIsQtyGTStock(
+            productQuantity > product.stock_quantity ? true : false
+          );
+        }
       } catch (error) {
         setProductName('No such item');
       }
@@ -160,7 +164,7 @@ const SaleForm = () => {
     if (productId) {
       GetProduct();
     }
-  }, [productId]);
+  }, [productId, productQuantity]);
 
   return (
     <>
@@ -205,9 +209,10 @@ const SaleForm = () => {
                         placeholder='Quantity...'
                         type='number'
                         {...field}
-                        onChange={(event) =>
-                          field.onChange(Number(event.target.value))
-                        }
+                        onChange={(event) => {
+                          field.onChange(Number(event.target.value));
+                          setProductQuantity(event.target.value);
+                        }}
                       />
                     </FormControl>
                   </FormItem>
@@ -225,11 +230,23 @@ const SaleForm = () => {
               >
                 {productName}
               </div>
+              <div
+                className={isQtyGTStock ? 'text-destructive' : 'text-green-500'}
+              >
+                {productName !== 'No such item'
+                  ? isQtyGTStock
+                    ? 'Exceed'
+                    : productName && parseInt(productQuantity) > 0
+                    ? `x${productQuantity}`
+                    : ''
+                  : ''}
+              </div>
               <Button
                 type='submit'
                 disabled={
                   productName === 'No such item' ||
                   productName === '' ||
+                  isQtyGTStock ||
                   isSubmitting
                 }
               >
