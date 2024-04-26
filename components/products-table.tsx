@@ -19,7 +19,7 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
         <Table className='text-center'>
           <TableHeader>
             <TableRow className='bg-secondary hover:bg-secondary'>
-              <TableHead className='text-left'>ID</TableHead>
+              <TableHead className='text-left'>Product ID</TableHead>
               <TableHead className='text-left'>Name</TableHead>
               <TableHead className='text-center'>Price</TableHead>
               <TableHead className='text-center'>Stock</TableHead>

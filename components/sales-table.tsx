@@ -18,7 +18,7 @@ const SalesTable = ({ sales }: { sales: Sale[] }) => {
         <Table className='text-center'>
           <TableHeader>
             <TableRow className='bg-secondary hover:bg-secondary'>
-              <TableHead className='text-left'>ID</TableHead>
+              <TableHead className='text-left'>Sale ID</TableHead>
               <TableHead className='text-center'>Total Amount</TableHead>
               <TableHead className='text-center'>Date</TableHead>
               <TableHead className='text-center'>Delete</TableHead>

@@ -31,12 +31,14 @@ const SaleDetailTable = ({ products, onDelete }: Props) => {
         <Table className='text-center'>
           <TableHeader>
             <TableRow className='bg-secondary hover:bg-secondary'>
-              <TableHead className='text-left'>ID</TableHead>
+              <TableHead className='text-left'>Product ID</TableHead>
               <TableHead className='text-left'>Name</TableHead>
               <TableHead className='text-center'>Quantity</TableHead>
               <TableHead className='text-center'>Unit Price</TableHead>
               <TableHead className='text-center'>Total Price</TableHead>
-              <TableHead className='text-center'>Delete</TableHead>
+              {onDelete ? (
+                <TableHead className='text-center'>Delete</TableHead>
+              ) : null}
             </TableRow>
           </TableHeader>
 
