@@ -32,84 +32,82 @@ const ProductsTable = ({ products }: { products: Product[] }) => {
           </TableHeader>
 
           <TableBody>
-            {products ? (
-              products.map((product) => (
-                <TableRow key={product.id} data-href='/'>
-                  <TableCell className='text-left'>
-                    <Link
-                      href={`/products/edit/${product.id}`}
-                      className='hover:underline hover:text-cyan-500'
-                    >
-                      {product.id}
-                    </Link>
-                  </TableCell>
+            {products
+              ? products.map((product) => (
+                  <TableRow key={product.id} data-href='/'>
+                    <TableCell className='text-left'>
+                      <Link
+                        href={`/products/edit/${product.id}`}
+                        className='hover:underline hover:text-cyan-500'
+                      >
+                        {product.id}
+                      </Link>
+                    </TableCell>
 
-                  <TableCell className='text-left'>
-                    <Link
-                      href={`/products/edit/${product.id}`}
-                      className='hover:underline hover:text-cyan-500'
-                    >
-                      {product.name}
-                    </Link>
-                  </TableCell>
+                    <TableCell className='text-left'>
+                      <Link
+                        href={`/products/edit/${product.id}`}
+                        className='hover:underline hover:text-cyan-500'
+                      >
+                        {product.name}
+                      </Link>
+                    </TableCell>
 
-                  <TableCell>
-                    <div className='font-semibold text-orange-600'>{`¥${product.price.toString()}`}</div>
-                  </TableCell>
+                    <TableCell>
+                      <div className='font-semibold text-orange-600'>{`¥${product.price.toString()}`}</div>
+                    </TableCell>
 
-                  <TableCell>
-                    <div className='flex justify-center'>
-                      <div className=''>{product.stock_quantity}</div>
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className='flex justify-center'>
-                      <div className=''>{product.wastage_quantity}</div>
-                    </div>
-                  </TableCell>
-
-                  <TableCell>
-                    <div className='flex justify-center'>
-                      <div className=''>
-                        {product.stock_quantity - product.wastage_quantity <
-                        product.alert_threshold ? (
-                          <ShieldAlert className='text-red-500' />
-                        ) : (
-                          <ShieldCheck className='text-green-500' />
-                        )}
+                    <TableCell>
+                      <div className='flex justify-center'>
+                        <div className=''>{product.stock_quantity}</div>
                       </div>
-                    </div>
-                  </TableCell>
+                    </TableCell>
 
-                  <TableCell>
-                    {product.created_at.toLocaleDateString('en-US', {
-                      year: '2-digit',
-                      month: '2-digit',
-                      day: '2-digit',
-                      hour: 'numeric',
-                      minute: '2-digit',
-                      hour12: false,
-                    })}
-                  </TableCell>
+                    <TableCell>
+                      <div className='flex justify-center'>
+                        <div className=''>{product.wastage_quantity}</div>
+                      </div>
+                    </TableCell>
 
-                  <TableCell>
-                    <DeleteBtn productId={product.id} />
-                  </TableCell>
+                    <TableCell>
+                      <div className='flex justify-center'>
+                        <div className=''>
+                          {product.stock_quantity - product.wastage_quantity <
+                          product.alert_threshold ? (
+                            <ShieldAlert className='text-red-500' />
+                          ) : (
+                            <ShieldCheck className='text-green-500' />
+                          )}
+                        </div>
+                      </div>
+                    </TableCell>
 
-                  <TableCell>
-                    <Link
-                      href={`/products/edit/${product.id}`}
-                      className='text-teal-500 hover:underline'
-                    >
-                      Edit
-                    </Link>
-                  </TableCell>
-                </TableRow>
-              ))
-            ) : (
-              <div></div>
-            )}
+                    <TableCell>
+                      {product.created_at.toLocaleDateString('en-US', {
+                        year: '2-digit',
+                        month: '2-digit',
+                        day: '2-digit',
+                        hour: 'numeric',
+                        minute: '2-digit',
+                        hour12: false,
+                      })}
+                    </TableCell>
+
+                    <TableCell>
+                      <DeleteBtn productId={product.id} />
+                    </TableCell>
+
+                    <TableCell>
+                      <Link
+                        href={`/products/edit/${product.id}`}
+                        className='text-teal-500 hover:underline'
+                      >
+                        Edit
+                      </Link>
+                    </TableCell>
+                  </TableRow>
+                ))
+              : null}
           </TableBody>
         </Table>
       </div>

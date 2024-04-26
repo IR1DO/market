@@ -1,5 +1,5 @@
 import prisma from '@/prisma/db';
-import { productPatchSchema } from '@/validation/schema/product';
+import { productSchema } from '@/validation/schema/product';
 import { NextRequest, NextResponse } from 'next/server';
 
 interface Props {
@@ -8,7 +8,7 @@ interface Props {
 
 export async function PATCH(request: NextResponse, { params }: Props) {
   const body = await request.json();
-  const validation = productPatchSchema.safeParse(body);
+  const validation = productSchema.safeParse(body);
 
   if (!validation.success) {
     return NextResponse.json(validation.error.format, { status: 400 });
@@ -44,4 +44,16 @@ export async function DELETE(request: NextRequest, { params }: Props) {
   });
 
   return NextResponse.json({ message: 'Product deleted.' });
+}
+
+export async function GET(request: NextRequest, { params }: Props) {
+  const product = await prisma.product.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  if (!product) {
+    return NextResponse.json({ error: 'Product not found.' }, { status: 404 });
+  }
+
+  return NextResponse.json({ product });
 }

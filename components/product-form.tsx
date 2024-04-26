@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react';
 import { useToast } from './ui/use-toast';
 import { productSchema } from '@/validation/schema/product';
 import { z } from 'zod';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
   Form,
@@ -80,7 +80,7 @@ const ProductForm = ({ product }: Props) => {
   }, [error, successMessage, toast]);
 
   return (
-    <div className='rounded-md border w-full p-4 max-w-7xl mx-auto'>
+    <div className='rounded-md border w-full p-4 max-w-7xl mx-auto mt-2 sm:mt-0'>
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(onSubmit)}

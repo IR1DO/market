@@ -17,10 +17,11 @@ import { useToast } from './ui/use-toast';
 import axios from 'axios';
 
 interface Props {
-  productId: number;
+  productId?: number;
+  saleId?: number;
 }
 
-const DeleteBtn = ({ productId }: Props) => {
+const DeleteBtn = ({ productId, saleId }: Props) => {
   const router = useRouter();
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState('');
@@ -32,10 +33,14 @@ const DeleteBtn = ({ productId }: Props) => {
       setError('');
       setIsDeleting(true);
 
-      await axios.delete('/api/products/' + productId);
+      if (productId) {
+        await axios.delete('/api/products/' + productId);
+        setSuccessMessage('The product has been deleted successfully.');
+      } else if (saleId) {
+        await axios.delete('/api/sales/' + saleId);
+        setSuccessMessage('The sale has been deleted successfully.');
+      }
 
-      setSuccessMessage('The product has been deleted successfully.');
-      // router.push('/products');
       router.refresh();
       setIsDeleting(false);
     } catch (error) {
