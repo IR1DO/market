@@ -9,7 +9,7 @@ generator client {
 }
 
 datasource db {
-  provider     = "mysql"
+  provider     = "postgresql"
   url          = env("DATABASE_URL")
   relationMode = "foreignKeys"
 }
@@ -18,9 +18,9 @@ model Product {
   id               Int               @id @default(autoincrement())
   name             String            @unique @db.VarChar(255)
   price            Decimal           @db.Decimal(10, 2)
-  stock_quantity   Int               @db.Int
-  wastage_quantity Int               @default(0) @db.Int
-  alert_threshold  Int               @default(10) @db.Int
+  stock_quantity   Int
+  wastage_quantity Int               @default(0)
+  alert_threshold  Int               @default(10)
   created_at       DateTime          @default(now())
   updated_at       DateTime          @updatedAt
   sales            ProductsOfSales[]
@@ -35,10 +35,10 @@ model Sale {
 
 model ProductsOfSales {
   sale          Sale     @relation(fields: [sale_id], references: [id])
-  sale_id       Int      @db.Int
+  sale_id       Int
   product       Product  @relation(fields: [product_id], references: [id])
-  product_id    Int      @db.Int
-  sale_quantity Int      @db.Int
+  product_id    Int
+  sale_quantity Int
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt
 
