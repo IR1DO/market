@@ -31,10 +31,10 @@ export default function RootLayout({
           <div className='flex min-h-screen'>
             <SideBar />
 
-            <main className='w-full overflow-x-auto'>
+            <div className='w-full overflow-x-auto flex flex-col'>
               <MainNav />
               {children}
-            </main>
+            </div>
           </div>
 
           <Toaster />
