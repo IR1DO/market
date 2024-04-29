@@ -2,7 +2,7 @@ import React from 'react';
 
 const Settings = () => {
   return (
-    <div className='flex flex-col items-center justify-center min-h-screen bg-gray-100 dark:bg-background'>
+    <div className='flex flex-col items-center justify-center flex-auto p-8 bg-gray-100 dark:bg-background'>
       <div className='max-w-lg p-8 bg-white dark:bg-gray-900 shadow-md rounded-md'>
         <h1 className='text-3xl font-bold mb-4'>About This Project</h1>
         <p className='text-lg mb-4'>
