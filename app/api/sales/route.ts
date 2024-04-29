@@ -32,11 +32,13 @@ export async function POST(request: NextRequest) {
         product: {
           connect: { id: product.id },
         },
+        product_name: product.name,
+        product_price: product.unit_price,
         sale_quantity: product.quantity,
       },
     });
 
-    // restore product quantity
+    // decrement product quantity
     await prisma.product.update({
       where: { id: product.id },
       data: {

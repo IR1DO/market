@@ -5,7 +5,7 @@ import prisma from '@/prisma/db';
 import Link from 'next/link';
 import React from 'react';
 
-export interface SearchParams {
+interface SearchParams {
   page: string;
 }
 

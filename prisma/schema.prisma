@@ -38,6 +38,8 @@ model ProductsOfSales {
   sale_id       Int
   product       Product  @relation(fields: [product_id], references: [id])
   product_id    Int
+  product_name  String   @db.VarChar(255)
+  product_price Decimal  @db.Decimal(10, 2)
   sale_quantity Int
   created_at    DateTime @default(now())
   updated_at    DateTime @updatedAt

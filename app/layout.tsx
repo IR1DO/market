@@ -30,6 +30,7 @@ export default function RootLayout({
         >
           <div className='flex min-h-screen'>
             <SideBar />
+            <aside className='fixed inset-y-0 left-0 z-[-100] hidden w-14 flex-col border-r bg-background sm:flex sm:static' />
 
             <div className='w-full overflow-x-auto flex flex-col'>
               <MainNav />
