@@ -73,130 +73,132 @@ const DashProductSalesTable = ({ products, searchParams }: Props) => {
   }, [sort, products, searchParams]);
 
   return (
-    <Table className='text-center'>
-      <TableHeader>
-        <TableRow className='bg-secondary hover:bg-secondary'>
-          <TableHead className='text-left'>
-            <Link
-              href={{
-                query: {
-                  ...searchParams,
-                  sort: `${
-                    searchParams.sort === '-product_id'
-                      ? 'product_id'
-                      : '-product_id'
-                  }`,
-                },
-              }}
-            >
-              <div className='flex items-center'>
-                Product ID
-                {searchParams.sort === 'product_id' && (
-                  <ArrowUp className='inline p-1' />
-                )}
-                {searchParams.sort === '-product_id' && (
-                  <ArrowDown className='inline p-1' />
-                )}
-              </div>
-            </Link>
-          </TableHead>
+    <div className='rounded-md sm:border overflow-hidden z-0'>
+      <Table className='text-center'>
+        <TableHeader>
+          <TableRow className='bg-secondary hover:bg-secondary'>
+            <TableHead className='text-left'>
+              <Link
+                href={{
+                  query: {
+                    ...searchParams,
+                    sort: `${
+                      searchParams.sort === '-product_id'
+                        ? 'product_id'
+                        : '-product_id'
+                    }`,
+                  },
+                }}
+              >
+                <div className='flex items-center'>
+                  Product ID
+                  {searchParams.sort === 'product_id' && (
+                    <ArrowUp className='inline p-1' />
+                  )}
+                  {searchParams.sort === '-product_id' && (
+                    <ArrowDown className='inline p-1' />
+                  )}
+                </div>
+              </Link>
+            </TableHead>
 
-          <TableHead className='text-left'>
-            <Link
-              href={{
-                query: {
-                  ...searchParams,
-                  sort: `${
-                    searchParams.sort === '-product_name'
-                      ? 'product_name'
-                      : '-product_name'
-                  }`,
-                },
-              }}
-            >
-              <div className='flex items-center'>
-                Name
-                {searchParams.sort === 'product_name' && (
-                  <ArrowUp className='inline p-1' />
-                )}
-                {searchParams.sort === '-product_name' && (
-                  <ArrowDown className='inline p-1' />
-                )}
-              </div>
-            </Link>
-          </TableHead>
+            <TableHead className='text-left'>
+              <Link
+                href={{
+                  query: {
+                    ...searchParams,
+                    sort: `${
+                      searchParams.sort === '-product_name'
+                        ? 'product_name'
+                        : '-product_name'
+                    }`,
+                  },
+                }}
+              >
+                <div className='flex items-center'>
+                  Name
+                  {searchParams.sort === 'product_name' && (
+                    <ArrowUp className='inline p-1' />
+                  )}
+                  {searchParams.sort === '-product_name' && (
+                    <ArrowDown className='inline p-1' />
+                  )}
+                </div>
+              </Link>
+            </TableHead>
 
-          <TableHead className='text-center'>
-            <Link
-              href={{
-                query: {
-                  ...searchParams,
-                  sort: `${
-                    searchParams.sort === '-product_quantity'
-                      ? 'product_quantity'
-                      : '-product_quantity'
-                  }`,
-                },
-              }}
-            >
-              <div className='flex items-center justify-center'>
-                Quantity Sold
-                {searchParams.sort === 'product_quantity' && (
-                  <ArrowUp className='inline p-1' />
-                )}
-                {searchParams.sort === '-product_quantity' && (
-                  <ArrowDown className='inline p-1' />
-                )}
-              </div>
-            </Link>
-          </TableHead>
-          <TableHead className='text-center'>
-            <Link
-              href={{
-                query: {
-                  ...searchParams,
-                  sort: `${
-                    searchParams.sort === '-product_amount'
-                      ? 'product_amount'
-                      : '-product_amount'
-                  }`,
-                },
-              }}
-            >
-              <div className='flex items-center justify-center'>
-                Amount Sold
-                {searchParams.sort === 'product_amount' && (
-                  <ArrowUp className='inline p-1' />
-                )}
-                {searchParams.sort === '-product_amount' && (
-                  <ArrowDown className='inline p-1' />
-                )}
-              </div>
-            </Link>
-          </TableHead>
-        </TableRow>
-      </TableHeader>
+            <TableHead className='text-center'>
+              <Link
+                href={{
+                  query: {
+                    ...searchParams,
+                    sort: `${
+                      searchParams.sort === '-product_quantity'
+                        ? 'product_quantity'
+                        : '-product_quantity'
+                    }`,
+                  },
+                }}
+              >
+                <div className='flex items-center justify-center'>
+                  Quantity Sold
+                  {searchParams.sort === 'product_quantity' && (
+                    <ArrowUp className='inline p-1' />
+                  )}
+                  {searchParams.sort === '-product_quantity' && (
+                    <ArrowDown className='inline p-1' />
+                  )}
+                </div>
+              </Link>
+            </TableHead>
+            <TableHead className='text-center'>
+              <Link
+                href={{
+                  query: {
+                    ...searchParams,
+                    sort: `${
+                      searchParams.sort === '-product_amount'
+                        ? 'product_amount'
+                        : '-product_amount'
+                    }`,
+                  },
+                }}
+              >
+                <div className='flex items-center justify-center'>
+                  Amount Sold
+                  {searchParams.sort === 'product_amount' && (
+                    <ArrowUp className='inline p-1' />
+                  )}
+                  {searchParams.sort === '-product_amount' && (
+                    <ArrowDown className='inline p-1' />
+                  )}
+                </div>
+              </Link>
+            </TableHead>
+          </TableRow>
+        </TableHeader>
 
-      <TableBody>
-        {productsList
-          ? productsList.map((product) => (
-              <TableRow key={product.id} data-href='/'>
-                <TableCell className='text-left'>{product.id}</TableCell>
+        <TableBody>
+          {productsList
+            ? productsList.map((product) => (
+                <TableRow key={product.id} data-href='/'>
+                  <TableCell className='text-left'>{product.id}</TableCell>
 
-                <TableCell className='text-left'>{product.name}</TableCell>
+                  <TableCell className='text-left'>{product.name}</TableCell>
 
-                <TableCell>{product.quantity}</TableCell>
+                  <TableCell>{product.quantity}</TableCell>
 
-                <TableCell>
-                  <div className='font-semibold text-orange-600'>{`¥${parseFloat(
-                    product.amount.toString()
-                  ).toLocaleString('en-us')}`}</div>
-                </TableCell>
-              </TableRow>
-            ))
-          : null}
-      </TableBody>
-    </Table>
+                  <TableCell>
+                    <div className='font-semibold text-orange-600'>{`¥${parseFloat(
+                      product.amount.toString()
+                    ).toLocaleString('en-us')}`}</div>
+                  </TableCell>
+                </TableRow>
+              ))
+            : null}
+        </TableBody>
+      </Table>
+    </div>
   );
 };
 

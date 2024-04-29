@@ -12,7 +12,7 @@ import { Product } from '@prisma/client';
 
 const DashProductsTable = ({ products }: { products: Product[] }) => {
   return (
-    <div className='rounded-md sm:border overflow-hidden'>
+    <div className='rounded-md sm:border overflow-hidden z-0'>
       <Table className='text-center'>
         <TableHeader>
           <TableRow className='bg-secondary hover:bg-secondary'>
