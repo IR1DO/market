@@ -14,7 +14,7 @@ const DashProductsTable = ({ products }: { products: Product[] }) => {
   return (
     <div className='rounded-md sm:border overflow-hidden z-0'>
       <Table className='text-center z-0'>
-        <TableHeader>
+        <TableHeader className='z-0'>
           <TableRow className='bg-secondary hover:bg-secondary'>
             <TableHead className='text-left'>ID</TableHead>
             <TableHead className='text-left'>Name</TableHead>

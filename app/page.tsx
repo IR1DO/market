@@ -344,7 +344,8 @@ const Dashboard = async ({ searchParams }: { searchParams: SearchParams }) => {
             </Card>
           </div>
 
-          <Tabs defaultValue='products'>
+          {/* FIXME response*/}
+          <Tabs defaultValue='products' className='overflow-x-auto'>
             <div className='flex items-center'>
               <TabsList>
                 <TabsTrigger value='products'>Products</TabsTrigger>
@@ -528,7 +529,7 @@ const Dashboard = async ({ searchParams }: { searchParams: SearchParams }) => {
           </Tabs>
         </div>
 
-        <div className=''>
+        <div className='overflow-x-auto'>
           <Card className='overflow-hidden' x-chunk='dashboard-chunk-4'>
             <CardHeader className='flex flex-row items-start bg-muted/50'>
               <div className='grid gap-0.5'>
