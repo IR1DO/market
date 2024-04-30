@@ -5,6 +5,8 @@ import { UniqueEnforcer } from 'enforce-unique';
 async function main() {
   const uniqueEnforcer = new UniqueEnforcer();
 
+  await prisma.$executeRaw`truncate "Product", "Sale", products_of_sales RESTART IDENTITY;`;
+
   for (let i = 0; i < 50; i++) {
     const name = faker.commerce.product();
 

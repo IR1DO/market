@@ -7,61 +7,10 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
-import {
-  DropdownMenu,
-  DropdownMenuCheckboxItem,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { Input } from '@/components/ui/input';
-// import {
-//   Pagination,
-//   PaginationContent,
-//   PaginationItem,
-// } from '@/components/ui/pagination';
-// import { Progress } from '@/components/ui/progress';
-// import { Separator } from '@/components/ui/separator';
-// import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
-import {
-  BadgeDollarSign,
-  Copy,
-  CreditCard,
-  File,
-  Home,
-  LayoutDashboard,
-  LineChart,
-  ListFilter,
-  MoreVertical,
-  Package,
-  Package2,
-  PanelLeft,
-  Search,
-  Settings,
-  ShoppingCart,
-  Truck,
-  Users2,
-} from 'lucide-react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from '@/components/ui/table';
+import { Truck } from 'lucide-react';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-// import {
-//   Tooltip,
-//   TooltipContent,
-//   TooltipTrigger,
-// } from '@/components/ui/tooltip';
-import { Badge } from '@/components/ui/badge';
 import React from 'react';
 import prisma from '@/prisma/db';
-import { Separator } from '@radix-ui/react-dropdown-menu';
 import Link from 'next/link';
 import { Decimal } from '@prisma/client/runtime/library';
 import DashProductSalesTable from '@/components/dash-product-sales-table';
@@ -109,7 +58,7 @@ const Dashboard = async ({ searchParams }: { searchParams: SearchParams }) => {
 
   const thisMonthRange = {
     startDate: new Date(currentDate.getFullYear(), currentDate.getMonth(), 1),
-    endDate: new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0),
+    endDate: new Date(currentDate.getFullYear(), currentDate.getMonth(), 31),
   };
 
   const lastMonthRange = {
@@ -120,16 +69,18 @@ const Dashboard = async ({ searchParams }: { searchParams: SearchParams }) => {
       currentDate.getMonth() === 0 ? 11 : currentDate.getMonth() - 1,
       1
     ),
-    endDate: new Date(currentDate.getFullYear(), currentDate.getMonth(), 0),
+    endDate: new Date(
+      currentDate.getMonth() === 0
+        ? currentDate.getFullYear() - 1
+        : currentDate.getFullYear(),
+      currentDate.getMonth() === 0 ? 11 : currentDate.getMonth() - 1,
+      31
+    ),
   };
 
   const thisYearRange = {
-    startDate: new Date(
-      currentDate.getFullYear() - 1,
-      currentDate.getMonth() + 1,
-      1
-    ),
-    endDate: new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0),
+    startDate: new Date(currentDate.getFullYear(), 0, 1),
+    endDate: new Date(currentDate.getFullYear(), 11, 31),
   };
 
   const lastYearRange = {
